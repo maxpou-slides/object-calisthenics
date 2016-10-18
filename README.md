@@ -1,5 +1,5 @@
 # Object Calisthenics
 
 ```
-$ git clone git://github.com/maxpou-slides/object-calisthenics --recursive
+$ git clone https://github.com/maxpou-slides/object-calisthenics --recursive
 ```
