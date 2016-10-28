@@ -64,14 +64,6 @@ table.table > tbody > tr > td {
   opacity: 1;
 }
 
-p.alert {
-  border-radius:10px;
-  padding:10px 36px;
-  margin:10px;
-  background:#3F3F3F;
-  border:1px solid grey;
-}
-
 h2.top-1 {
   margin-top: 10%;
 }

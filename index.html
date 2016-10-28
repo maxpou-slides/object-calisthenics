@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="reveal.js/css/reveal.css">
 <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
 <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
-<link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 <link rel="stylesheet" href="css/custom.css">
 <!-- Printing and PDF exports -->
@@ -23,7 +22,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <div class="slides">
   <section>
     <section>
-      <h2>Object Calisthenics</h2>
+      <h2 class="top-2">Object Calisthenics</h2>
       <h3>9 steps to better software design today</h3>
       <p class="me">Maxence POUTORD</p>
       <p class="me-link">
@@ -45,19 +44,19 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   </section>
   <section>
     <section>
-      <h2>Object Calisthenics</h2>
+      <h2 class="top-1">Object Calisthenics</h2>
       <p>Jeff Bay, in The ThoughtWorks Anthology, lists 9 rules to writing <b>better Object Oriented code</b>.</p>
       <img data-src="img/thoughtWorks-anthology.jpg" style="border:none;width: 25%;">
     </section>
     <section>
-      <h2>Motivation</h2>
+      <h2 class="top-3">Motivation</h2>
       <p>readability, maintainability, testability, and comprehensibility</p>
     </section>
   </section>
   <!-- STEP 1 -->
   <section>
     <section>
-      <h2>#1: One level of indentation per method</h2>
+      <h2 class="top-3">#1: One level of indentation per method</h2>
     </section>
     <section>
       <img data-src="img/indent-power.jpeg" style="border:none;width: 80%;">
@@ -109,7 +108,7 @@ public someFunction(someParameter)
       <p class="fragment" data-fragment-index="0">
         You may need to split your code into multiple functions. This is the <a href="http://refactoring.com/catalog/extractMethod.html">Extract Method</a> (cf. Martin Fowler).
       </p>
-      <pre class="fragment push" data-fragment-index="0"><code data-trim>
+      <pre class="fragment push" data-fragment-index="0"><code class="php" data-trim>
 //Class Command
 public function validateProductList(ProductList $products)
 {
@@ -121,10 +120,10 @@ public function validateProductList(ProductList $products)
         }
     }
 
-    return validProducts;
+    return $validProducts;
 }
       </code></pre>
-      <pre class="fragment push" data-fragment-index="1"><code data-trim>
+      <pre class="fragment push" data-fragment-index="1"><code class="php" data-trim>
 //Class Command
 public function validateProductList(ProductList $products)
 {
@@ -142,7 +141,7 @@ public function isValidProduct(Product $product)
       </code></pre>
     </section>
     <section>
-      <h2>Benefits</h2>
+      <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Easier to read</li>
         <li>Reduce cyclomatic complexity</li>
@@ -154,11 +153,11 @@ public function isValidProduct(Product $product)
   <!-- STEP 2 -->
   <section>
     <section>
-      <h2>#2: Don’t use the ELSE keyword</h2>
+      <h2 class="top-3">#2: Don’t use the ELSE keyword</h2>
     </section>
     <section>
         <h2 class="top-1">Code (re)organisation</h2>
-        <pre class="fragment push" data-fragment-index="0"><code data-trim>
+        <pre class="fragment push" data-fragment-index="0"><code class="php" data-trim>
 public function login($username, $password)
 {
     if ($this->isValid($username, $password)) {
@@ -169,7 +168,7 @@ public function login($username, $password)
     }
 }
         </code></pre>
-        <pre class="fragment push" data-fragment-index="1"><code data-trim>
+        <pre class="fragment push" data-fragment-index="1"><code class="php" data-trim>
 public function login($username, $password)
 {
     if ($this->isValid($username, $password)) {
@@ -180,7 +179,7 @@ public function login($username, $password)
     }
 }
         </code></pre>
-        <pre class="fragment push" data-fragment-index="2"><code data-trim>
+        <pre class="fragment push" data-fragment-index="2"><code class="php" data-trim>
 public function login($username, $password)
 {
     // defensive approach
@@ -192,7 +191,7 @@ public function login($username, $password)
     return redirect("login");
 }
         </code></pre>
-        <pre class="fragment push" data-fragment-index="3"><code data-trim>
+        <pre class="fragment push" data-fragment-index="3"><code class="php" data-trim>
 public function login($username, $password)
 {
     // optimistic approach
@@ -206,7 +205,7 @@ public function login($username, $password)
         </code></pre>
     </section>
     <section>
-      <h2>Not enought?</h2>
+      <h2 class="top-2">Not enought?</h2>
       <ul>
         <li>State Pattern</li>
         <li>Strategy Pattern</li>
@@ -215,7 +214,7 @@ public function login($username, $password)
       </ul>
     </section>
     <section>
-      <h2>Benefits</h2>
+      <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Easier to read</li>
         <li>Reduce cyclomatic complexity</li>
@@ -225,7 +224,7 @@ public function login($username, $password)
   <!-- STEP 3 -->
   <section>
     <section>
-      <h2>#3: Wrap all primitives and Strings</h2>
+      <h2 class="top-3">#3: Wrap all primitives and Strings</h2>
     </section>
     <section>
       <h2>Example</h2>
@@ -289,7 +288,8 @@ $whoeverUserBis = new User("Lucie", new Email("打才我醫集老電了快洋，
       </code></pre>
     </section>
     <section>
-      <h2>Be pragmatic: <br>only wrap primitive with behaviour</h2>
+      <h2 class="top-1">Be pragmatic!</h2>
+      <h4>only wrap primitive with behaviour:</h4>
       <ul>
         <li>UUID</li>
         <li>BIC, IBAN</li>
@@ -299,7 +299,7 @@ $whoeverUserBis = new User("Lucie", new Email("打才我醫集老電了快洋，
       </ul>
     </section>
     <section>
-      <h2>Benefits</h2>
+      <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Type hinting</li>
         <li>Easier to reuse</li>
@@ -310,11 +310,11 @@ $whoeverUserBis = new User("Lucie", new Email("打才我醫集老電了快洋，
   <!-- STEP 4 -->
   <section>
     <section>
-      <h2>#4: First class collections</h2>
+      <h2 class="top-3">#4: First class collections</h2>
     </section>
     <section>
       <h2>Why?</h2>
-      <pre><code data-trim>
+      <pre><code class="php" data-trim>
 class Compagny
 {
     private $name;
@@ -324,7 +324,7 @@ class Compagny
 }
       </code></pre>
       <p class="fragment">Where can I put filters/find/... methods?</p>
-      <pre class="fragment"><code data-trim>
+      <pre class="fragment"><code class="php" data-trim>
 class Team
 {
     private $name;
@@ -336,8 +336,8 @@ class Team
       <p class="fragment"><i class="fa fa-arrow-right" aria-hidden="true"></i> 'employes' collection need to be wrapped in its own class</p>
     </section>
     <section>
-      <h2>Example</h2>
-      <pre><code data-trim>
+      <h2 class="top-1">Example</h2>
+      <pre><code class="php" data-trim>
 class EmployeesCollection
 {
     private $employes;
@@ -352,7 +352,7 @@ class EmployeesCollection
       </code></pre>
     </section>
     <section>
-      <h2>Benefits</h2>
+      <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Readability</li>
         <li>Easier to merge collection and not worry about member behaviour in them</li>
@@ -362,11 +362,11 @@ class EmployeesCollection
   <!-- STEP 5 -->
   <section>
     <section>
-      <h2>#5: One dot per line</h2>
+      <h2 class="top-3">#5: One dot per line</h2>
       <i>...or an arrow (->) if you use PHP!</i>
     </section>
     <section>
-      <h2>Law of Demeter (LoD)</h2>
+      <h2 class="top-2">Law of Demeter (LoD)</h2>
       <blockquote>
         "Don't talk to strangers. Only talk to your immediate friends"
       </blockquote>
@@ -384,7 +384,7 @@ $objectA->getObjectB()->getObjectC()->doSomething();
       </blockquote>
     </section>
     <section>
-      <h2>Benefits</h2>
+      <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Law of Demeter</li>
         <li>Readability</li>
@@ -395,10 +395,10 @@ $objectA->getObjectB()->getObjectC()->doSomething();
   <!-- STEP 6 -->
   <section>
     <section>
-      <h2>#6: Don’t abbreviate</h2>
+      <h2 class="top-3">#6: Don’t abbreviate</h2>
     </section>
     <section>
-      <h2>Why do you abbreviate?</h2>
+      <h2 class="top-2">Why do you abbreviate?</h2>
       <ul>
         <li>
           It's repeated many times<br>
@@ -429,8 +429,8 @@ $objectA->getObjectB()->getObjectC()->doSomething();
       </blockquote>
     </section>
     <section>
-      <h2>It's all about reading!</h2>
-      <pre><code data-trim>
+      <h2 class="top-2">It's all about reading!</h2>
+      <pre><code class="php" data-trim>
 foreach ($users as $u) {
     // code
     // code
@@ -442,7 +442,7 @@ foreach ($users as $u) {
       </code></pre>
     </section>
     <section>
-      <h2>Benefits</h2>
+      <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Readability</li>
         <li>Communication</li>
@@ -453,23 +453,20 @@ foreach ($users as $u) {
   <!-- STEP 7 -->
   <section>
     <section>
-      <h2>#7: Keep all entities small</h2>
+      <h2 class="top-3">#7: Keep all entities small</h2>
     </section>
     <section>
-      <h2>Why?</h2>
+      <h2 class="top-1">Why?</h2>
       <p>Long files are hard to:</p>
       <ul>
         <li>read</li>
         <li>understand</li>
         <li>maintain</li>
+        <li>reuse</li>
       </ul>
     </section>
     <section>
-      "No class over 50 lines and no package over 10 files"<br>
-      Long files are hard to read and hard to reuse.
-    </section>
-    <section>
-      <h2>Benefits</h2>
+      <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Easier to reuse</li>
         <li>Better code segregation</li>
@@ -481,11 +478,11 @@ foreach ($users as $u) {
   <!-- STEP 8 -->
   <section>
     <section>
-      <h2>#8: No classes with several instance variables</h2>
+      <h2 class="top-3">#8: No classes with several instance variables</h2>
     </section>
     <section>
-      <h2>High cohesion, and better encapsulation</h2>
-      <pre><code data-trim>
+      <h2 class="top-1">High cohesion, and better encapsulation</h2>
+      <pre><code class="php" data-trim>
 class MyWonderfulService
 {
     private $anotherService;
@@ -498,7 +495,7 @@ class MyWonderfulService
       </code></pre>
     </section>
     <section>
-      <h2>Benefits</h2>
+      <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Loose coupling / Easier to reuse</li>
         <li>Better encapsulation</li>
@@ -510,7 +507,7 @@ class MyWonderfulService
   <!-- STEP 9 -->
   <section>
     <section>
-      <h2>#9: No getters/setters/properties</h2>
+      <h2 class="top-3">#9: No getters/setters/properties</h2>
       <aside class="notes">
         <ul>
           <li>http://whitewashing.de/2012/08/22/building_an_object_model__no_setters_allowed.html</li>
@@ -518,7 +515,7 @@ class MyWonderfulService
       </aside>
     </section>
     <section>
-      <h2>Why do we use GETTER/SETTER so much?</h2>
+      <h2 class="top-2">Why do we use GETTER/SETTER so much?</h2>
       <ul>
         <li>Frameworks <i>(i.e. Symfony's entities)</i></li>
         <li>IDE generate them automatically</li>
@@ -526,7 +523,7 @@ class MyWonderfulService
       </ul>
     </section>
     <section>
-      <h2>Tell, don’t ask principle</h2>
+      <h2 class="top-2">Tell, don’t ask principle</h2>
       <blockquote cite="http://">
         "Don't ask for the information you need to do the work; ask the object that has the information to do the work for you"
         <br> — Allen Holub
@@ -534,7 +531,7 @@ class MyWonderfulService
     </section>
     <section>
       <h2>What is better?</h2>
-      <pre><code data-trim>
+      <pre><code class="php" data-trim>
 // Game
 private $score;
 
@@ -549,7 +546,7 @@ public function getScore(): int {
 // Usage
 $game->setScore($game->getScore() + ENEMY_DESTROYED_SCORE);
       </code></pre>
-      <pre class="fragment"><code data-trim>
+      <pre class="fragment"><code class="php" data-trim>
 // Game
 public function addScore(int $delta): void {
     this->score += $delta;
@@ -563,7 +560,7 @@ $game->addScore(ENEMY_DESTROYED_SCORE);
       <h2>What is the difference between...</h2>
       <div class="row">
         <div class="col-md-6">
-          <pre><code data-trim>
+          <pre><code class="php" data-trim>
 class Employe
 {
     private $name;
@@ -581,7 +578,7 @@ class Employe
           </code></pre>
         </div>
         <div class="col-md-6 fragment">
-          <pre><code data-trim>
+          <pre><code class="php" data-trim>
 class Employe
 {
     public $name;
@@ -591,7 +588,7 @@ class Employe
       </div>
     </section>
     <section>
-      <h2>Benefits</h2>
+      <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Avoid to violate the Open/closed principle (the <b>O</b> in SOLID)</li>
         <li>Easier to read</li>
@@ -603,13 +600,18 @@ class Employe
   </section>
   <section>
     <section>
-      <h2>Reading</h2>
+      <h2 class="top-1">Reading</h2>
       <ul>
         <li><a href="http://code.joejag.com/2016/anti-if-the-missing-patterns.html">Anti-If: The missing patterns</a> by Joe Wright</li>
-        <li><a href="http://www.maxpou.fr/else-unnecessary-expression/">Else, the unnecessary expression</a> by me</li>
+        <li><a href="http://www.maxpou.fr/else-unnecessary-expression/">"Else": the unnecessary expression</a> by me</li>
         <li><a href="http://www.yegor256.com/2014/09/16/getters-and-setters-are-evil.html">Getters/Setters. Evil. Period.</a> by Yegor Bugayenko</li>
         <li><a href="http://williamdurand.fr/2013/06/03/object-calisthenics/">Object Calisthenics</a> by William Durand</li>
       </ul>
+    </section>
+    <section>
+        <h2>Thank you</h2>
+        <h3>Questions?</h3>
+        <img data-src="img/question.gif" style="border:none;width: 40%;">
     </section>
   </section>
 </div>
@@ -624,7 +626,7 @@ Reveal.initialize({
   progress: true,
   slideNumber: true,
   history: true,
-  center: true,
+  center: false,
   width: 1000,
   height: 700,
 
