@@ -31,26 +31,30 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         <a href="mailto:maxence.poutord@gmail.com"><i class="fa fa-envelope-o"></i> maxence.poutord@gmail.com</a>
       </p>
     </section>
-    <section>
-      <h2>RevealJS Tips</h2>
-      <ul>
-        <li>ESC: slide overview</li>
-        <li>ALT + click: zoom</li>
-        <li>B: blackout</li>
-        <li>S: speaker notes</li>
-        <li><a href="?print-pdf">Print (then ctrl + p)</a></li>
-      </ul>
-    </section>
   </section>
   <section>
     <section>
+      <h2 class="top-1">Object Calisthenics?</h2>
+      <blockquote>
+          Cal • is • then • ics - /ˌkaləsˈTHeniks/
+      </blockquote>
+      <ul>
+          <li class="fragment" data-fragment-index="0">Object: OOP context</li>
+          <li class="fragment" data-fragment-index="1">Calisthenics: gymnastics context</li>
+      </ul>
+      <br>
+      <img data-src="img/gym.gif"  class="fragment" data-fragment-index="1" style="border:none;width: 25%;">
+    </section>
+    <section>
       <h2 class="top-1">Object Calisthenics</h2>
-      <p>Jeff Bay, in The ThoughtWorks Anthology, lists 9 rules to writing <b>better Object Oriented code</b>.</p>
+      <p>In The ThoughtWorks Anthology, Jeff Bay, lists 9 rules to writing <b>better Object Oriented code</b>.</p>
       <img data-src="img/thoughtWorks-anthology.jpg" style="border:none;width: 25%;">
     </section>
     <section>
-      <h2 class="top-3">Motivation</h2>
+      <h2 class="top-1">Motivation</h2>
       <p>readability, maintainability, testability, and comprehensibility</p>
+      <img data-src="img/super_elk.gif" style="border:none;">
+      <p>...make your OO code great again!</p>
     </section>
   </section>
   <!-- STEP 1 -->
@@ -288,6 +292,11 @@ $whoeverUserBis = new User("Lucie", new Email("打才我醫集老電了快洋，
       </code></pre>
     </section>
     <section>
+        <h2 class="top-2">Should I wrap all primitives and strings?</h2>
+        <br>
+        <h2 class="fragment" style="color: red">NO!</h3>
+    </section>
+    <section>
       <h2 class="top-1">Be pragmatic!</h2>
       <h4>only wrap primitive with behaviour:</h4>
       <ul>
@@ -370,12 +379,14 @@ class EmployeesCollection
       <blockquote>
         "Don't talk to strangers. Only talk to your immediate friends"
       </blockquote>
-      <pre><code class="php" data-trim>
+      <div class="fragment">
+          <pre><code class="php" data-trim>
 $objectA->getObjectB()->doSomething();
 //...or worse
 $objectA->getObjectB()->getObjectC()->doSomething();
-      </code></pre>
-      <p><i class="fa fa-question-circle" aria-hidden="true"></i> What happen if getObjectB() return NULL?</p>
+          </code></pre>
+          <p><i class="fa fa-question-circle" aria-hidden="true"></i> What happen if getObjectB() return NULL?</p>
+      </div>
     </section>
     <section>
       <blockquote>
@@ -416,15 +427,16 @@ $objectA->getObjectB()->getObjectC()->doSomething();
       <video src="img/fancy-beer.webm" id="main-video" autoplay="" loop=""></video>
     </section>
     <section>
+        <h2>Tips</h2>
       <ul>
-        <li>Class and method names to 1-2 words</li>
+        <li>Class and method names with 1-2 words</li>
         <li>Be explicit! <br>
-          <i>Wrong name/non explicit often leads to errors.</i>
+          <i><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Wrong/non explicit names often leads to errors.</i>
         </li>
         <li>Naming is too hard? Ask yourself if this class/method/... make sense!</li>
       </ul>
       <blockquote>
-        There are only two hard things in Computer Science: cache invalidation and naming things.
+        There are only two hard things in Computer Science:<br> cache invalidation and naming things.
         <br> — Phil Karlton
       </blockquote>
     </section>
@@ -590,7 +602,7 @@ class Employe
     <section>
       <h2 class="top-2">Benefits</h2>
       <ul>
-        <li>Avoid to violate the Open/closed principle (the <b>O</b> in SOLID)</li>
+        <li>Avoid to violate the Open/Closed principle (the <b>O</b> in SOLID)</li>
         <li>Easier to read</li>
       </ul>
     </section>
