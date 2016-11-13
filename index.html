@@ -28,7 +28,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       <p class="me-link">
         <a href="https://twitter.com/_maxpou"><i class="fa fa-twitter"></i> @_maxpou</a> |
         <a href="http://www.maxpou.fr/"><i class="fa fa-globe"></i> maxpou.fr</a> |
-        <a href="mailto:maxence.poutord@gmail.com"><i class="fa fa-envelope-o"></i> maxence.poutord@gmail.com</a>
+        <a href="mailto:hello@maxpou.fr"><i class="fa fa-envelope-o"></i> hello@maxpou.fr</a>
       </p>
     </section>
   </section>
@@ -47,7 +47,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     </section>
     <section>
       <h2 class="top-1">Object Calisthenics</h2>
-      <p>In The ThoughtWorks Anthology, Jeff Bay, lists 9 rules to writing <b>better Object Oriented code</b>.</p>
+      <p>In the ThoughtWorks Anthology, Jeff Bay, list 9 rules for writing <b>better Object Oriented code</b>.</p>
       <img data-src="img/thoughtWorks-anthology.jpg" style="border:none;width: 25%;">
     </section>
     <section>
@@ -60,18 +60,20 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   <!-- STEP 1 -->
   <section>
     <section>
-      <h2 class="top-3">#1: One level of indentation per method</h2>
+      <h2 class="top-3">#1: One level of indentation<br> per method</h2>
     </section>
     <section>
       <img data-src="img/indent-power.jpeg" style="border:none;width: 80%;">
     </section>
     <section>
-      <h2>Code (re)organisation: Early return</h2>
+      <h2>Code (re)organisation:<br> Early return</h2>
       <pre class="fragment push" data-fragment-index="0"><code class="php" data-trim>
 public someFunction(someParameter)
 {
     if (firstCondition) {
         if (secondCondition) {
+            // Do Something
+            // Do Something
             // Do Something
         }
     }
@@ -85,6 +87,8 @@ public someFunction(someParameter)
     }
 
     if (secondCondition) {
+        // Do Something
+        // Do Something
         // Do Something
     }
 }
@@ -101,16 +105,18 @@ public someFunction(someParameter)
     }
 
     // Do Something
+    // Do Something
+    // Do Something
 }
       </code></pre>
       <p class="fragment" data-fragment-index="2">
-        "Single Entry, Single Exit" was written for assembly languages like Fortran/COBOL(<a href="http://programmers.stackexchange.com/questions/118703/where-did-the-notion-of-one-return-only-come-from">More reading</a>)
+        "Single Entry, Single Exit" was written for assembly languages like Fortran/COBOL (<a href="http://programmers.stackexchange.com/questions/118703/where-did-the-notion-of-one-return-only-come-from">More reading</a>)
       </p>
     </section>
     <section>
       <h2>Too much indentation level?</h2>
       <p class="fragment" data-fragment-index="0">
-        You may need to split your code into multiple functions. This is the <a href="http://refactoring.com/catalog/extractMethod.html">Extract Method</a> (cf. Martin Fowler).
+        You may need to split your code into multiple functions.<br> This is the <a href="http://refactoring.com/catalog/extractMethod.html">Extract Method</a> (cf. Martin Fowler).
       </p>
       <pre class="fragment push" data-fragment-index="0"><code class="php" data-trim>
 //Class Command
@@ -308,6 +314,59 @@ $whoeverUserBis = new User("Lucie", new Email("打才我醫集老電了快洋，
       </ul>
     </section>
     <section>
+        <h2>Stop abusing arrays!</h2>
+        <pre class="sticky fragment push" data-fragment-index="0"><code class="php" data-trim>
+$command = array(
+    array(
+        "user"  => array(
+            "id"      => 42,
+            "name"    => "Maxence",
+            "address" => "Dublin"
+        ),
+        "date"  => "1989-04-11 07:28:47",
+        "beers" => array(
+            array(
+                "ID"       => "76b44e1a-a8d6-11e6-80f5-76304dec7eb7",
+                "name"     => "Tripel Karmeliet",
+                "quantity" => 4,
+            ),
+            array(
+                "ID"       => "76b45220-a8d6-11e6-80f5-76304dec7eb7",
+                "name"     => "Journeyman's Pale Ale",
+                "quantity" => 8,
+            ),
+            array(
+                "ID"       => "76b45356-a8d6-11e6-80f5-76304dec7eb7",
+                "name"     => "Duvel tripel hop",
+                "quantity" => 15,
+            )
+        )
+    )
+);
+        </code></pre>
+        <div class="fragment push" data-fragment-index="1">
+            <p><a href="https://en.wikipedia.org/wiki/Data-directed_programming">Data-directed programming</a></p>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Big_ball_of_mud">Big ball of mud anti-pattern</a></li>
+                <li>No defined structure</li>
+                <li>comprehension is time consuming</li>
+                <li>needless complexity</li>
+            </ul>
+            <pre><code class="php" data-trim>
+foreach ($command["beers"] as $beer) {
+    if (isset($beer["quantity"])) {
+        $itemsCounter += $beer["quantity"];
+    }
+}
+// ...or
+$itemsCounter = $command->countItems();
+            </code></pre>
+        </div>
+        <aside class="notes">
+            <a href="http://nomad.so/2014/06/stop-abusing-arrays-in-php/">stop abusing arrays in php</a>
+        </aside>
+    </section>
+    <section>
       <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Type hinting</li>
@@ -389,7 +448,7 @@ $objectA->getObjectB()->getObjectC()->doSomething();
       </div>
     </section>
     <section>
-      <blockquote>
+      <blockquote style="margin-top: 20%;">
         "you can play with your toys, with toys that you make, and with toys that someone gives you. You don’t ever, ever play with your toy’s toys."
         <br> — Jeff BAY
       </blockquote>
@@ -411,11 +470,11 @@ $objectA->getObjectB()->getObjectC()->doSomething();
     <section>
       <h2 class="top-2">Why do you abbreviate?</h2>
       <ul>
-        <li>
+        <li class="fragment">
           It's repeated many times<br>
           <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Code duplication
         </li>
-        <li>
+        <li class="fragment">
           The method name is too long <br>
           <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Violates the Single Responsibility Principle
         </li>
@@ -615,7 +674,7 @@ class Employe
       <h2 class="top-1">Reading</h2>
       <ul>
         <li><a href="http://code.joejag.com/2016/anti-if-the-missing-patterns.html">Anti-If: The missing patterns</a> by Joe Wright</li>
-        <li><a href="http://www.maxpou.fr/else-unnecessary-expression/">"Else": the unnecessary expression</a> by me</li>
+        <li><a href="http://www.maxpou.fr/else-unnecessary-expression/">"Else": the unnecessary expression</a> by me :)</li>
         <li><a href="http://www.yegor256.com/2014/09/16/getters-and-setters-are-evil.html">Getters/Setters. Evil. Period.</a> by Yegor Bugayenko</li>
         <li><a href="http://williamdurand.fr/2013/06/03/object-calisthenics/">Object Calisthenics</a> by William Durand</li>
       </ul>
