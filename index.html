@@ -151,6 +151,19 @@ public function isValidProduct(Product $product)
       </code></pre>
     </section>
     <section>
+      <h2 class="top-2">Remove useless checks</h2>
+      <pre><code class="php" data-trim>
+function foo($products)
+{
+    if (isset($products) && count($products)) {
+        foreach ($products as $product) {
+            # code
+        }
+    }
+}
+      </code></pre>
+    </section>
+    <section>
       <h2 class="top-2">Benefits</h2>
       <ul>
         <li>Easier to read</li>
