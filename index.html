@@ -152,13 +152,31 @@ public function isValidProduct(Product $product)
     </section>
     <section>
       <h2 class="top-2">Remove useless checks</h2>
-      <pre><code class="php" data-trim>
+      <pre class="fragment push" data-fragment-index="0"><code class="php" data-noescape data-trim>
 function foo($products)
 {
     if (isset($products) && count($products)) {
         foreach ($products as $product) {
             # code
         }
+    }
+}
+      </code></pre>
+      <pre class="fragment push" data-fragment-index="1"><code class="php" data-noescape data-trim>
+function foo($products)
+{
+    <mark>if (isset($products) && count($products)) {</mark>
+        foreach ($products as $product) {
+            # code
+        }
+    <mark>}</mark>
+}
+      </code></pre>
+      <pre class="fragment push" data-fragment-index="2"><code class="php" data-noescape data-trim>
+function foo($products)
+{
+    foreach ($products as $product) {
+        # code
     }
 }
       </code></pre>
