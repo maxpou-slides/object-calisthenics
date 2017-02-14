@@ -68,39 +68,42 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     <section>
       <h2>Code (re)organisation:<br> Early return</h2>
       <pre class="fragment push" data-fragment-index="0"><code class="php" data-trim>
-public someFunction(someParameter)
+public function register(Request $request): void
 {
-    if (firstCondition) {
-        if (secondCondition) {
-            // Do Something
-            // Do Something
-            // Do Something
+    $username = $request->get('username');
+    $password = $request->get('user_password');
+    $confirmPassword = $request->get('confirmPassword');
+
+    if ($username) {
+        if ($password) {
+            if ($password === $confirmPassword) {
+                if (mb_strlen($password) >= 8 && preg_match("regex", $password)) {
+                    // Do Something
+                    // Do Something
+                    // Do Something
+                }
+            }
         }
     }
 }
       </code></pre>
       <pre class="fragment push" data-fragment-index="1"><code class="php" data-trim>
-public someFunction(someParameter)
+public function register(Request $request): void
 {
-    if (!firstCondition) {
+    $username = $request->get('username');
+    $password = $request->get('user_password');
+    $confirmPassword = $request->get('confirmPassword');
+
+    if (!$username) {
         return;
     }
-
-    if (secondCondition) {
-        // Do Something
-        // Do Something
-        // Do Something
-    }
-}
-      </code></pre>
-      <pre class="fragment push" data-fragment-index="2"><code class="php" data-trim>
-public someFunction(someParameter)
-{
-    if (!firstCondition) {
+    if (!$password) {
         return;
     }
-
-    if (!secondCondition) {
+    if (!$password === $confirmPassword) {
+        return;
+    }
+    if (!mb_strlen($password) >= 8 && !preg_match("regex", $password)) {
         return;
     }
 
@@ -109,18 +112,72 @@ public someFunction(someParameter)
     // Do Something
 }
       </code></pre>
+      <br>
       <p class="fragment" data-fragment-index="2">
-        "Single Entry, Single Exit" was written for assembly languages like Fortran/COBOL (<a href="http://programmers.stackexchange.com/questions/118703/where-did-the-notion-of-one-return-only-come-from">More reading</a>)
+        "Single Entry, Single Exit"...?
       </p>
+      <p class="fragment" data-fragment-index="3">
+        "Single Entry, Single Exit" <i class="fa fa-arrow-right" aria-hidden="true"></i> was written for assembly languages like Fortran/COBOL
+      </p>
+      <aside class="notes">
+        <a href="http://programmers.stackexchange.com/questions/118703/where-did-the-notion-of-one-return-only-come-from">More reading</a>
+      </aside>
     </section>
     <section>
-      <h2>Too much indentation level?</h2>
+        <h2>Use Validation patterns</h2>
+        <pre class="fragment push" data-fragment-index="0"><code class="php" data-trim>
+public function register(Request $request): void
+{
+    $username = $request->get('username');
+    $password = $request->get('user_password');
+    $confirmPassword = $request->get('confirmPassword');
+
+    if (!$username) {
+        return;
+    }
+    if (!$password) {
+        return;
+    }
+    if ($password !== $confirmPassword) {
+        return;
+    }
+    if (!mb_strlen($password) >= 8 && !preg_match("regex", $password)) {
+        return;
+    }
+
+    // Do Something
+    // Do Something
+    // Do Something
+}
+  </code></pre>
+  <pre class="fragment push" data-fragment-index="1"><code class="php" data-trim>
+public function register(Request $request): void
+{
+    $username = $request->get('username');
+    $password = $request->get('user_password');
+    $confirmPassword = $request->get('confirmPassword');
+
+    $userRegistration = new Registration($username, $password, $confirmPassword)
+    $validator = $this->get('validator');
+
+    if (!$validator->isValid($userRegistration)) {
+        return;
+    }
+
+    // Do Something
+    // Do Something
+    // Do Something
+}
+        </code></pre>
+    </section>
+    <section>
+      <h2>Too much indentation level with loop?</h2>
       <p class="fragment" data-fragment-index="0">
         You may need to split your code into multiple functions.<br> This is the <a href="http://refactoring.com/catalog/extractMethod.html">Extract Method</a> (cf. Martin Fowler).
       </p>
       <pre class="fragment push" data-fragment-index="0"><code class="php" data-trim>
 //Class Command
-public function validateProductList(ProductList $products)
+public function validateProductList(array $products): array
 {
     $validProducts[];
     foreach ($products as $product)
@@ -135,12 +192,12 @@ public function validateProductList(ProductList $products)
       </code></pre>
       <pre class="fragment push" data-fragment-index="1"><code class="php" data-trim>
 //Class Command
-public function validateProductList(ProductList $products)
+public function validateProductList(array $products): array
 {
     return array_filter($products, 'isValidProduct');
 }
 
-public function isValidProduct(Product $product)
+public function isValidProduct(Product $product): boolean
 {
     if (!$product->price > 0 && length($product->name)) {
         return true;
@@ -376,12 +433,12 @@ $command = array(
 );
         </code></pre>
         <div class="fragment push" data-fragment-index="1">
-            <p><a href="https://en.wikipedia.org/wiki/Data-directed_programming">Data-directed programming</a></p>
             <ul>
                 <li><a href="https://en.wikipedia.org/wiki/Big_ball_of_mud">Big ball of mud anti-pattern</a></li>
                 <li>No defined structure</li>
-                <li>comprehension is time consuming</li>
-                <li>needless complexity</li>
+                <li>Comprehension is time consuming</li>
+                <li>Needless complexity</li>
+                <li>Procedural programming is hard to scale</li>
             </ul>
             <pre><code class="php" data-trim>
 foreach ($command["beers"] as $beer) {
@@ -389,7 +446,9 @@ foreach ($command["beers"] as $beer) {
         $itemsCounter += $beer["quantity"];
     }
 }
+
 // ...or
+
 $itemsCounter = $command->countItems();
             </code></pre>
         </div>
@@ -422,7 +481,7 @@ class Compagny
     # code
 }
       </code></pre>
-      <p class="fragment">Where can I put filters/find/... methods?</p>
+      <p class="fragment">Where can I put filters/contains/... methods?</p>
       <pre class="fragment"><code class="php" data-trim>
 class Team
 {
@@ -444,7 +503,7 @@ class EmployeesCollection
     public function add(Employe $employe) {/** ... **/};
     public function remove(Employe $employe) {/** ... **/};
     public function count() {/** ... **/};
-    public function filter(Closure $p) {/** ... **/};
+    public function filter(Closure $p): {/** ... **/};
 
     //...
 }
@@ -465,25 +524,31 @@ class EmployeesCollection
       <i>...or an arrow (->) if you use PHP!</i>
     </section>
     <section>
-      <h2 class="top-2">Law of Demeter (LoD)</h2>
+      <h2 class="top-2">A.K.A. Law of Demeter (LoD)</h2>
       <blockquote>
         "Don't talk to strangers. Only talk to your immediate friends"
       </blockquote>
-      <div class="fragment">
-          <pre><code class="php" data-trim>
-$objectA->getObjectB()->doSomething();
-//...or worse
-$objectA->getObjectB()->getObjectC()->doSomething();
-          </code></pre>
-          <p><i class="fa fa-question-circle" aria-hidden="true"></i> What happen if getObjectB() return NULL?</p>
-      </div>
     </section>
     <section>
+      <h2>What is a stranger?</h2>
+      <pre><code class="php" data-trim>
+$objectA->getObjectB()->getObjectC();
+      </code></pre>
+      <img src="img/lod.png" style="background-color:white;">
+    </section>
+    <section>
+      <h2 class="top-2">Example</h2>
+      <pre><code class="php" data-trim>
+$objectA->getThis()->getThat()->getSomethingElse()->doSomething();
+      </code></pre>
+      <p><i class="fa fa-question-circle" aria-hidden="true"></i> What happen if getThat() return NULL?</p>
+    </section>
+    <!-- <section>
       <blockquote style="margin-top: 20%;">
         "you can play with your toys, with toys that you make, and with toys that someone gives you. You don’t ever, ever play with your toy’s toys."
         <br> — Jeff BAY
       </blockquote>
-    </section>
+    </section> -->
     <section>
       <h2 class="top-2">Benefits</h2>
       <ul>
@@ -701,7 +766,7 @@ class Employe
     <section>
       <h2 class="top-2">Benefits</h2>
       <ul>
-        <li>Avoid to violate the Open/Closed principle (the <b>O</b> in SOLID)</li>
+        <li>Avoid to violate the <abbr title="open for extension, but closed for modification">Open/Closed principle</abbr> (the <b>O</b> in SOLID)</li>
         <li>Easier to read</li>
       </ul>
     </section>
@@ -723,6 +788,8 @@ class Employe
         <h2>Thank you</h2>
         <h3>Questions?</h3>
         <img data-src="img/question.gif" style="border:none;width: 40%;">
+        <br>
+        <a href="https://twitter.com/_maxpou"><i class="fa fa-twitter"></i> @_maxpou</a>
     </section>
   </section>
 </div>
