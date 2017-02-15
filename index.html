@@ -56,6 +56,9 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
       <img data-src="img/super_elk.gif" style="border:none;">
       <p>...make your OO code great again!</p>
     </section>
+    <aside class="notes">
+        and velocity
+    </aside>
   </section>
   <!-- STEP 1 -->
   <section>
@@ -103,7 +106,7 @@ public function register(Request $request): void
     if (!$password === $confirmPassword) {
         return;
     }
-    if (!mb_strlen($password) >= 8 && !preg_match("regex", $password)) {
+    if (mb_strlen($password) < 8 || !preg_match("regex", $password)) {
         return;
     }
 
@@ -141,7 +144,7 @@ public function register(Request $request): void
     if ($password !== $confirmPassword) {
         return;
     }
-    if (!mb_strlen($password) >= 8 && !preg_match("regex", $password)) {
+    if (mb_strlen($password) < 8 || !preg_match("regex", $password)) {
         return;
     }
 
@@ -530,7 +533,7 @@ class EmployeesCollection
       </blockquote>
     </section>
     <section>
-      <h2>What is a stranger?</h2>
+      <h2>What are strangers?</h2>
       <pre><code class="php" data-trim>
 $objectA->getObjectB()->getObjectC();
       </code></pre>
@@ -625,6 +628,17 @@ foreach ($users as $u) {
   <section>
     <section>
       <h2 class="top-3">#7: Keep all entities small</h2>
+    </section>
+    <section>
+      <h2 class="top-3">Rule #7: Keep <u>everything</u> small</h2>
+      <br>
+      <blockquote cite="http://">
+        "Simplicity Comes from Reduction"
+        <br> — Paul W. Homer
+      </blockquote>
+      <aside class="notes">
+          simplicity is the ultimate sophistication
+      </aside>
     </section>
     <section>
       <h2 class="top-1">Why?</h2>
