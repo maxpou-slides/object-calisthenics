@@ -127,53 +127,6 @@ public function register(Request $request): void
       </aside>
     </section>
     <section>
-        <h2>Use Validation patterns</h2>
-        <pre class="fragment push" data-fragment-index="0"><code class="php" data-trim>
-public function register(Request $request): void
-{
-    $username = $request->get('username');
-    $password = $request->get('user_password');
-    $confirmPassword = $request->get('confirmPassword');
-
-    if (!$username) {
-        return;
-    }
-    if (!$password) {
-        return;
-    }
-    if ($password !== $confirmPassword) {
-        return;
-    }
-    if (mb_strlen($password) < 8 || !preg_match("regex", $password)) {
-        return;
-    }
-
-    // Do Something
-    // Do Something
-    // Do Something
-}
-  </code></pre>
-  <pre class="fragment push" data-fragment-index="1"><code class="php" data-trim>
-public function register(Request $request): void
-{
-    $username = $request->get('username');
-    $password = $request->get('user_password');
-    $confirmPassword = $request->get('confirmPassword');
-
-    $userRegistration = new Registration($username, $password, $confirmPassword)
-    $validator = $this->get('validator');
-
-    if (!$validator->isValid($userRegistration)) {
-        return;
-    }
-
-    // Do Something
-    // Do Something
-    // Do Something
-}
-        </code></pre>
-    </section>
-    <section>
       <h2>Too much indentation level with loop?</h2>
       <p class="fragment" data-fragment-index="0">
         You may need to split your code into multiple functions.<br> This is the <a href="http://refactoring.com/catalog/extractMethod.html">Extract Method</a> (cf. Martin Fowler).
