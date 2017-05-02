@@ -22,8 +22,8 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
 <div class="slides">
   <section>
     <section>
-      <h2 class="top-2">Object Calisthenics</h2>
-      <h3>9 steps to better software design today</h3>
+      <h3 class="top-2">Make your code great again with the</h3>
+      <h2>Object Calisthenics</h2>
       <p class="me">Maxence POUTORD</p>
       <p class="me-link">
         <a href="https://twitter.com/_maxpou"><i class="fa fa-twitter"></i> @_maxpou</a> |
@@ -550,6 +550,19 @@ $objectA->getThis()->getThat()->getSomethingElse()->doSomething();
         There are only two hard things in Computer Science:<br> cache invalidation and naming things.
         <br> — Phil Karlton
       </blockquote>
+    </section>
+    <section>
+      <h2 class="top-2">Avoid tautologies</h2>
+      <pre><code class="php" data-trim>
+class Manager
+{
+    function perform()
+    {
+        // ...
+    }
+}
+      </code></pre>
+      <p>You can also replace perform by <code>process()</code>...</p>
     </section>
     <section>
         <h2>Ubiquitous Language<br>to the rescue!</h2>
