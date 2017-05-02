@@ -71,42 +71,39 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
     <section>
       <h2>Code (re)organisation:<br> Early return</h2>
       <pre class="fragment push" data-fragment-index="0"><code class="php" data-trim>
-public function register(Request $request): void
+public someFunction(someParameter)
 {
-    $username = $request->get('username');
-    $password = $request->get('user_password');
-    $confirmPassword = $request->get('confirmPassword');
-
-    if ($username) {
-        if ($password) {
-            if ($password === $confirmPassword) {
-                if (mb_strlen($password) >= 8 && preg_match("regex", $password)) {
-                    // Do Something
-                    // Do Something
-                    // Do Something
-                }
-            }
+    if (firstCondition) {
+        if (secondCondition) {
+            // Do Something
+            // Do Something
+            // Do Something
         }
     }
 }
       </code></pre>
       <pre class="fragment push" data-fragment-index="1"><code class="php" data-trim>
-public function register(Request $request): void
+public someFunction(someParameter)
 {
-    $username = $request->get('username');
-    $password = $request->get('user_password');
-    $confirmPassword = $request->get('confirmPassword');
+    if (!firstCondition) {
+        return;
+    }
 
-    if (!$username) {
+    if (secondCondition) {
+        // Do Something
+        // Do Something
+        // Do Something
+    }
+}
+      </code></pre>
+      <pre class="fragment push" data-fragment-index="2"><code class="php" data-trim>
+public someFunction(someParameter)
+{
+    if (!firstCondition) {
         return;
     }
-    if (!$password) {
-        return;
-    }
-    if (!$password === $confirmPassword) {
-        return;
-    }
-    if (mb_strlen($password) < 8 || !preg_match("regex", $password)) {
+
+    if (!secondCondition) {
         return;
     }
 
