@@ -549,6 +549,19 @@ $objectA->getThis()->getThat()->getSomethingElse()->doSomething();
       </blockquote>
     </section>
     <section>
+      <h2 class="top-2">It's all about reading!</h2>
+      <pre><code class="php" data-trim>
+foreach ($users as $u) {
+    // code
+    // code
+    // code
+    // code
+    // code
+    $u->sendMail($aMail); // "$u": what does it stand for?
+}
+      </code></pre>
+    </section>
+    <section>
       <h2 class="top-2">Avoid tautologies</h2>
       <pre><code class="php" data-trim>
 class Manager
@@ -564,19 +577,6 @@ class Manager
     <section>
         <h2>Ubiquitous Language<br>to the rescue!</h2>
         <img data-src="img/stairs.gif" style="border:none;width: 80%;background-color: #FFF">
-    </section>
-    <section>
-      <h2 class="top-2">It's all about reading!</h2>
-      <pre><code class="php" data-trim>
-foreach ($users as $u) {
-    // code
-    // code
-    // code
-    // code
-    // code
-    $u->sendMail($aMail); // "$u": what does it stand for?
-}
-      </code></pre>
     </section>
     <section>
       <h2 class="top-2">Benefits</h2>
