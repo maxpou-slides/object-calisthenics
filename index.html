@@ -309,7 +309,7 @@ $whoeverUserBis = new User("Lucie", "打才我醫集老電了快洋，西足並�
       </code></pre>
     </section>
     <section>
-      <h2>Proposition</h2>
+      <h2>Proposition - Value Object</h2>
       <pre class="sticky"><code class="php" data-trim>
 class Email
 {
@@ -593,6 +593,10 @@ class Manager
       <h2 class="top-3">#7: Keep all entities small</h2>
     </section>
     <section>
+      <h2 class="top-2">Avoid God Object</h2>
+      <p><i> An object that knows too much or does too much</i></p>
+    </section>
+    <section>
       <h2 class="top-3">Rule #7: Keep <u>everything</u> small</h2>
       <br>
       <blockquote cite="http://">
@@ -635,13 +639,14 @@ class Manager
     </section>
     <section>
       <h2 class="top-1">High cohesion, and better encapsulation</h2>
+      <p>Try to keep <s style="color:#FF5733">2</s> 5 instance variables (max)</p>
       <pre><code class="php" data-trim>
 class MyWonderfulService
 {
     private $anotherService;
     private $logger;
     private $translator;
-    private $entityManager;
+    private $entityService;
 
     // code
 }
@@ -767,6 +772,15 @@ class Employe
         <img data-src="img/question.gif" style="border:none;width: 40%;">
         <br>
         <a href="https://twitter.com/_maxpou"><i class="fa fa-twitter"></i> @_maxpou</a>
+    </section>
+  </section>
+  <section>
+    <section>
+      <h2 class="top-3">Backup slides</h2>
+    </section>
+    <section>
+      <h2 class="top-1">No classes with more than two instance variable</h2>
+      <img src="img/instance-variables.png" alt="">
     </section>
   </section>
 </div>
